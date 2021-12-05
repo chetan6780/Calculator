@@ -3,7 +3,6 @@ let outputScreen = document.getElementById('output-screen');
 let NUM_ONE = 0;
 let NUM_TWO = 0;
 let OPERATOR = "";
-let isNumOne = true;
 
 /* ------------------------ Mathematical operations ------------------------ */
 addition = (a, b) => { return a + b };
@@ -35,9 +34,8 @@ operate = (a, b, operator) => {
 display = (num) => { outputScreen.value += num; }
 clearAll = () => {
     outputScreen.value = " ";
-    NUM_ONE = "";
-    NUM_TWO = "";
-    isNumOne = true;
+    NUM_ONE = 0;
+    NUM_TWO = 0;
 }
 del = () => {
     outputScreen.value = outputScreen.value.slice(0, -1);
@@ -81,14 +79,19 @@ zero.onclick = () => display(0);
 point.onclick = () => display(".");
 clearBtn.onclick = () => clearAll();
 deleteLast.onclick = () => del();
+
 equal.onclick = () => {
     NUM_TWO = outputScreen.value;
     let ans = operate(NUM_ONE, NUM_TWO, OPERATOR);
+
+    // Set output as history
     if (typeof ans === "number") NUM_ONE = ans;
     else NUM_ONE = 0;
     NUM_TWO = 0;
-    isNumOne = false;
-    outputScreen.value = " ";
+    OPERATOR = "=";
+    outputScreen.value = "";
+
+    // display the answer
     display(ans);
 }
 
@@ -98,7 +101,7 @@ setNumOne = () => {
     } catch (err) {
         NUM_ONE = 0;
     }
-    outputScreen.value = " ";
+    outputScreen.value = "";
 }
 
 plus.onclick = () => {
@@ -123,4 +126,3 @@ percent.onclick = () => {
 }
 
 /* ---------------------------- Handle buttons ---------------------------- */
-
