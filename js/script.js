@@ -41,6 +41,20 @@ del = () => {
     outputScreen.value = outputScreen.value.slice(0, -1);
     NUM_ONE = outputScreen.value;
 }
+evaluate = () => {
+    NUM_TWO = outputScreen.value;
+    let ans = operate(NUM_ONE, NUM_TWO, OPERATOR);
+
+    // Set output as history
+    if (typeof ans === "number") NUM_ONE = ans;
+    else NUM_ONE = 0;
+    NUM_TWO = 0;
+    OPERATOR = "=";
+    outputScreen.value = "";
+
+    // display the answer
+    display(ans);
+}
 
 /* --------------------------- Handle buttons --------------------------- */
 const zero = document.getElementById('zero');
@@ -81,18 +95,7 @@ clearBtn.onclick = () => clearAll();
 deleteLast.onclick = () => del();
 
 equal.onclick = () => {
-    NUM_TWO = outputScreen.value;
-    let ans = operate(NUM_ONE, NUM_TWO, OPERATOR);
-
-    // Set output as history
-    if (typeof ans === "number") NUM_ONE = ans;
-    else NUM_ONE = 0;
-    NUM_TWO = 0;
-    OPERATOR = "=";
-    outputScreen.value = "";
-
-    // display the answer
-    display(ans);
+    evaluate();
 }
 
 setNumOne = () => {
@@ -125,4 +128,19 @@ percent.onclick = () => {
     OPERATOR = '%';
 }
 
-/* ---------------------------- Handle buttons ---------------------------- */
+/* ---------------------------- Handle keyboard ---------------------------- */
+
+
+handleKeyboardInput = (e) => {
+    if (e.key >= 0 && e.key <= 9) display(e.key)
+    if (e.key === '.') display('.')
+    if (e.key === '=' || e.key === 'Enter') evaluate()
+    if (e.key === 'Backspace') del()
+    if (e.key === 'Escape') clearAll()
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/' || e.key === '%') {
+        setNumOne();
+        OPERATOR = e.key;
+    }
+}
+
+window.addEventListener('keydown', handleKeyboardInput)
