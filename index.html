@@ -6,12 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/100/000000/calculator--v2.png">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    calculator
+    <header>
+        <h1>Calculator</h1>
+    </header>
+    <main>
+
+        <div class="container">
+            <div class="calculator">
+                <input type="text" placeholder="0" id="output-screen">
+                <button class="orange" onclick="clearAll()">AC</button>
+                <button class="orange" onclick="del()">Del</button>
+                <button class="orange" onclick="display('%')">%</button>
+                <button class="orange" onclick="display('/')">/</button>
+                <button onclick="display('7')">7</button>
+                <button onclick="display('8')">8</button>
+                <button onclick="display('9')">9</button>
+                <button class="orange" onclick="display('*')">x</button>
+                <button onclick="display('4')">4</button>
+                <button onclick="display('5')">5</button>
+                <button onclick="display('6')">6</button>
+                <button class="orange" onclick="display('-')">-</button>
+                <button onclick="display('1')">1</button>
+                <button onclick="display('2')">2</button>
+                <button onclick="display('3')">3</button>
+                <button class="orange" onclick="display('+')">+</button>
+                <button class="orange" onclick="display('.')">.</button>
+                <button onclick="display('0')">0</button>
+                <button onclick="calculate()" class="equal">=</button>
+            </div>
+        </div>
+    </main>
+
+    <footer> Copyright &copy;<a href="https://github.com/chetan6780">chetan6780</a> </footer>
+
     <script src="./js/script.js"></script>
 </body>
 
