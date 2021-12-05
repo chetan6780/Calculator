@@ -1,7 +1,7 @@
 let outputScreen = document.getElementById('output-screen');
 
-let NUM_ONE='';
-let NUM_TWO='';
+let NUM_ONE = 0;
+let NUM_TWO = 0;
 let OPERATOR = "";
 let isNumOne = true;
 
@@ -14,7 +14,6 @@ percentage = (a, b) => { return (a * (b / 100)) };
 
 operate = (a, b, operator) => {
     a = Number(a);
-    if(b==='') return a;
     b = Number(b);
     switch (operator) {
         case "+":
@@ -28,7 +27,7 @@ operate = (a, b, operator) => {
         case "%":
             return percentage(a, b);
         default:
-            return "Invalid operator";
+            return addition(0, b);
     }
 }
 
@@ -43,17 +42,6 @@ clearAll = () => {
 del = () => {
     outputScreen.value = outputScreen.value.slice(0, -1);
     NUM_ONE = outputScreen.value;
-}
-
-setNum = () => {
-    if (isNumOne) {
-        NUM_ONE = outputScreen.value;
-        isNumOne = false;
-    } else {
-        NUM_TWO = outputScreen.value
-        isNumOne = false;
-    }
-    outputScreen.value = "";
 }
 
 /* --------------------------- Handle buttons --------------------------- */
@@ -94,37 +82,45 @@ point.onclick = () => display(".");
 clearBtn.onclick = () => clearAll();
 deleteLast.onclick = () => del();
 equal.onclick = () => {
-    setNum();
+    NUM_TWO = outputScreen.value;
     let ans = operate(NUM_ONE, NUM_TWO, OPERATOR);
     if (typeof ans === "number") NUM_ONE = ans;
-    else NUM_ONE = "";
-    NUM_TWO = "";
+    else NUM_ONE = 0;
+    NUM_TWO = 0;
     isNumOne = false;
     outputScreen.value = " ";
     display(ans);
 }
 
+setNumOne = () => {
+    try {
+        NUM_ONE = Number(outputScreen.value);
+    } catch (err) {
+        NUM_ONE = 0;
+    }
+    outputScreen.value = " ";
+}
+
 plus.onclick = () => {
-    setNum();
+    setNumOne();
     OPERATOR = '+';
 }
 minus.onclick = () => {
-    setNum();
+    setNumOne();
     OPERATOR = '-';
 }
 multiply.onclick = () => {
-    setNum();
+    setNumOne();
     OPERATOR = '*';
 }
 divide.onclick = () => {
-    setNum();
+    setNumOne();
     OPERATOR = '/';
 }
 percent.onclick = () => {
-    setNum();
+    setNumOne();
     OPERATOR = '%';
 }
-
 
 /* ---------------------------- Handle buttons ---------------------------- */
 
