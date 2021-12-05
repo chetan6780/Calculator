@@ -13,7 +13,7 @@ A Calculator build using HTML, CSS and Javascript.
 ### Screenshots:
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
-    <img src="images/laptop.png" alt="laptop" style="width: 40%;">
+    <img src="images/laptop.png" alt="laptop" style="width: 51%;">
     <img src="images/mobile.png" alt="mobile screenshot" style="width: 20%;">
 </div>
 
