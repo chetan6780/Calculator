@@ -17,4 +17,4 @@ A Calculator build using HTML, CSS and Javascript.
     <img src="images/mobile.png" alt="mobile screenshot" style="width: 20%;">
 </div>
 
-<a href="https://icons8.com/icon/wLptoyIYwLb3/calculator">Calculator icon by Icons8</a>
+<a href="https://icons8.com/icon/wLptoyIYwLb3/calculator">Calculator favicon by Icons8</a>
